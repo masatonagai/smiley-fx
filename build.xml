@@ -1,0 +1,70 @@
+<project name="SmileyFX" default="dist">
+  <property name="id" value="smileyfx" />
+  <property name="version" value="0.1.0" />
+  <property name="vendor" value="Nagai Masato" />
+  
+  <!--  javafx -->
+  <property environment="env" />
+  <property name="jfxrt.jar" value="${env.JAVA_HOME}/jre/lib/jfxrt.jar" />
+
+  <!-- directories -->
+  <property name="src.dir" value="src" />
+  <property name="src.main.dir" value="src/main" />
+  <property name="src.test.dir" value="src/test" />
+  <property name="lib.dir" value="lib" />
+  <property name="build.dir" value="build" />
+  <property name="dist.dir" value="dist" />
+  <property name="install.dir" value="install" />
+
+  <target name="clean" description="Clean up build artifacts.">
+    <delete dir="${build.dir}" />
+    <delete dir="${dist.dir}" />
+  </target>
+
+  <target name="dist" description="Create everything needed for distribution.">
+    <antcall target="binary" />
+    <antcall target="source" />
+    <antcall target="javadoc" />
+  </target>
+  
+  <target name="source" description="Create the source archive.">
+    <zip destfile="${dist.dir}/${id}-${version}-sources.jar" basedir="." includes="src/**" />
+  </target>
+
+  <target name="javadoc" description="Create the javadoc archive.">
+    <javadoc destdir="${build.dir}/doc" sourcepath="${src.main.dir}/java" packagenames="**.*" use="true" private="false">
+      <link href="http://download.oracle.com/javase/7/docs/api" />
+      <link href="http://download.oracle.com/javafx/2/api/" />
+      <classpath>
+        <pathelement path="${jfxrt.jar}" />
+      </classpath>
+    </javadoc>
+    <zip destfile="${dist.dir}/${id}-${version}-javadoc.jar" basedir="${build.dir}" includes="doc/**" update="true" />
+  </target>
+
+  <target name="binary" depends="compile" description="Create the binary archive.">
+    <jar destfile="${dist.dir}/${id}-${version}.jar">
+      <fileset dir="${classes.main.dir}" />
+      <manifest>
+        <attribute name="Built-By" value="${vendor}" />
+        <attribute name="Implementation-Vendor" value="${vendor}" />
+        <attribute name="Implementation-Title" value="${ant.project.name}" />
+        <attribute name="Implementation-Version" value="${version}" />
+      </manifest>
+    </jar>
+  </target>
+
+  <target name="compile" description="Compile the main code.">
+    <property name="classes.main.dir" value="${build.dir}/main/classes" />
+    <mkdir dir="${classes.main.dir}" />
+    <javac srcdir="${src.main.dir}/java" destdir="${classes.main.dir}"
+      source="1.7" target="1.7" debug="on"
+      includeantruntime="false">
+      <classpath>
+        <pathelement path="${jfxrt.jar}" />
+        <pathelement path="${classes.main.dir}" />
+      </classpath>
+    </javac>
+  </target>
+  
+</project>
