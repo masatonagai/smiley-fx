@@ -20,6 +20,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcBuilder;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.EllipseBuilder;
+import javafx.scene.shape.StrokeType;
 
 public class SmileyFX {
 
@@ -46,6 +47,7 @@ public class SmileyFX {
                 .create()
                 .stroke(Color.BLACK)
                 .strokeWidth(STROKE_WIDTH)
+                .strokeType(StrokeType.INSIDE)
                 .fill(Color.GOLD)
                 .radiusX(faceCp.getX())
                 .radiusY(faceCp.getY())
@@ -74,6 +76,7 @@ public class SmileyFX {
                 .create()
                 .stroke(Color.BLACK)
                 .strokeWidth(STROKE_WIDTH)
+                .strokeType(StrokeType.INSIDE)
                 .fill(Color.TRANSPARENT)
                 .centerX(faceCp.getX())
                 .centerY(faceCp.getY())
