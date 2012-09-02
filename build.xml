@@ -1,6 +1,6 @@
 <project name="SmileyFX" default="dist">
   <property name="id" value="smileyfx" />
-  <property name="version" value="0.1.0" />
+  <property name="version" value="0.1.0-SNAPSHOT" />
   <property name="vendor" value="Nagai Masato" />
   
   <!--  javafx -->
