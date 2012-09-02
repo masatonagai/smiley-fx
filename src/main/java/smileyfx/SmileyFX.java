@@ -46,7 +46,7 @@ public class SmileyFX {
         return EllipseBuilder
                 .create()
                 .stroke(Color.BLACK)
-                .strokeWidth(STROKE_WIDTH)
+                .strokeWidth(faceCp.getX() / 10)
                 .strokeType(StrokeType.INSIDE)
                 .fill(Color.GOLD)
                 .radiusX(faceCp.getX())
@@ -75,7 +75,7 @@ public class SmileyFX {
         return ArcBuilder
                 .create()
                 .stroke(Color.BLACK)
-                .strokeWidth(STROKE_WIDTH)
+                .strokeWidth(faceCp.getX() / 10)
                 .strokeType(StrokeType.INSIDE)
                 .fill(Color.TRANSPARENT)
                 .centerX(faceCp.getX())

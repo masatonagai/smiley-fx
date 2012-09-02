@@ -26,7 +26,7 @@ public class JavaFXDemo extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Node smiley = SmileyFX.smiley(40);
+        Node smiley = SmileyFX.smiley(20);
         Scene canvas = SceneBuilder.create()
             .root(new Group(smiley))
             .width(160)
